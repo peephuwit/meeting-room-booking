@@ -131,13 +131,15 @@ export const MyBookingsModal: React.FC<MyBookingsModalProps> = ({
                   }`}
                 >
                   <div className="space-y-1.5 flex-1 min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-bold text-sm text-slate-900 truncate">{b.title}</span>
+                    <div className="font-bold text-sm text-slate-900 leading-snug">
+                      {b.title}
+                    </div>
 
-                      {/* Status Badges */}
+                    {/* Status Badges on dedicated line below title */}
+                    <div className="flex items-center">
                       {isCancelled ? (
                         <span
-                          className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                          className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full whitespace-nowrap ${
                             isAutoReleased
                               ? 'bg-rose-100 text-rose-800 border border-rose-200'
                               : 'bg-slate-100 text-slate-600'
@@ -146,12 +148,12 @@ export const MyBookingsModal: React.FC<MyBookingsModalProps> = ({
                           {isAutoReleased ? t.autoReleasedBadge : lang === 'th' ? 'ยกเลิกแล้ว' : 'CANCELLED'}
                         </span>
                       ) : isCheckedIn ? (
-                        <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center space-x-1">
+                        <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center space-x-1 whitespace-nowrap">
                           <span>✓ {t.checkedInBadge}</span>
                         </span>
                       ) : isPending ? (
                         <span
-                          className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200"
+                          className="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 whitespace-nowrap"
                           title={t.checkInWindowNotice}
                         >
                           {t.pendingCheckInBadge}

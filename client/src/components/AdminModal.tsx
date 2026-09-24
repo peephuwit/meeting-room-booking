@@ -182,19 +182,19 @@ export const AdminModal: React.FC<AdminModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/60 backdrop-blur-sm">
       <div className="bg-white rounded-3xl max-w-4xl w-full shadow-2xl border border-slate-200 relative flex flex-col max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="px-6 py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-          <div>
-            <div className="flex items-center space-x-2">
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-100 text-purple-700 border border-purple-200">
-                ADMIN PANEL
-              </span>
-              <h2 className="text-lg font-bold text-slate-900">{t.adminModalTitle}</h2>
-            </div>
-            <p className="text-xs text-slate-500 mt-0.5">{t.adminModalDesc}</p>
+        <div className="px-5 py-4 sm:px-6 sm:py-5 border-b border-slate-100 flex items-start justify-between bg-slate-50/50 gap-3">
+          <div className="space-y-1">
+            <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold tracking-wider bg-purple-100 text-purple-700 border border-purple-200 uppercase">
+              ADMIN PANEL
+            </span>
+            <h2 className="text-base sm:text-xl font-bold text-slate-900 leading-tight">
+              {t.adminModalTitle}
+            </h2>
+            <p className="text-xs text-slate-500">{t.adminModalDesc}</p>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 p-2 rounded-xl hover:bg-slate-100 transition cursor-pointer"
+            className="text-slate-400 hover:text-slate-600 p-2 rounded-xl hover:bg-slate-100 transition cursor-pointer shrink-0"
           >
             <X className="w-5 h-5" />
           </button>
@@ -232,7 +232,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
 
         {/* Tab 1: Rooms Management */}
         {activeTab === 'rooms' && (
-          <div className="flex-1 overflow-y-auto p-6 space-y-4">
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-slate-500">
                 {lang === 'th' ? `ห้องประชุมทั้งหมด (${rooms.length})` : `All Conference Rooms (${rooms.length})`}
@@ -250,64 +250,62 @@ export const AdminModal: React.FC<AdminModalProps> = ({
               {rooms.map((room) => (
                 <div
                   key={room.id}
-                  className={`rounded-2xl p-4.5 border transition flex flex-col justify-between ${
+                  className={`rounded-2xl p-4 sm:p-5 border transition flex flex-col justify-between gap-3.5 shadow-2xs ${
                     room.isMaintenance
                       ? 'bg-amber-50/40 border-amber-300'
-                      : 'bg-white border-slate-200'
+                      : 'bg-white border-slate-200/90'
                   }`}
                 >
-                  <div>
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <div className="font-bold text-slate-900 text-base flex items-center space-x-2">
-                          <span>{room.name}</span>
-                          {room.isMaintenance ? (
-                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300">
-                              {t.maintenanceBadge}
-                            </span>
-                          ) : (
-                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
-                              {t.activeBadge}
-                            </span>
-                          )}
-                        </div>
-                        <div className="text-xs text-slate-500 mt-1">
-                          {room.location} • {room.capacity} {t.seats}
-                        </div>
-                      </div>
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <h3 className="font-bold text-slate-900 text-sm sm:text-base leading-snug">
+                        {room.name}
+                      </h3>
+                      {room.isMaintenance ? (
+                        <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300 whitespace-nowrap">
+                          {t.maintenanceBadge}
+                        </span>
+                      ) : (
+                        <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 whitespace-nowrap">
+                          {t.activeBadge}
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-xs text-slate-500">
+                      {room.location} • <span className="font-medium text-slate-700">{room.capacity} {t.seats}</span>
                     </div>
 
-                    <div className="mt-2.5 text-[11px] text-slate-600 bg-slate-50/80 p-2 rounded-lg border border-slate-100 truncate">
+                    <div className="mt-2.5 text-xs text-slate-600 bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200/70 leading-relaxed">
                       {room.amenities || '-'}
                     </div>
                   </div>
 
                   {/* Actions */}
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
                     <button
                       onClick={() => handleToggleMaintenance(room)}
-                      className={`text-xs font-semibold px-2.5 py-1.5 rounded-lg border transition flex items-center space-x-1 cursor-pointer ${
+                      className={`text-xs font-semibold px-3 py-1.5 rounded-xl border transition flex items-center space-x-1.5 cursor-pointer ${
                         room.isMaintenance
                           ? 'bg-emerald-50 text-emerald-700 border-emerald-300 hover:bg-emerald-100'
                           : 'bg-amber-50 text-amber-800 border-amber-300 hover:bg-amber-100'
                       }`}
                       title={t.toggleMaintenance}
                     >
-                      <Wrench className="w-3.5 h-3.5" />
+                      <Wrench className="w-3.5 h-3.5 shrink-0" />
                       <span>{room.isMaintenance ? (lang === 'th' ? 'เปิดใช้งาน' : 'Reactivate') : t.maintenanceLabel}</span>
                     </button>
 
-                    <div className="flex items-center space-x-1">
+                    <div className="flex items-center space-x-1 shrink-0">
                       <button
                         onClick={() => handleOpenEdit(room)}
-                        className="p-1.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition cursor-pointer"
+                        className="p-2 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition cursor-pointer"
                         title={t.editRoomTitle}
                       >
                         <Edit2 className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteRoom(room)}
-                        className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition cursor-pointer"
+                        className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition cursor-pointer"
                         title="Delete Room"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -360,12 +358,16 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                         isCancelled ? 'bg-slate-50/70 opacity-60' : 'hover:bg-slate-50/50'
                       }`}
                     >
-                      <div className="space-y-1">
-                        <div className="flex items-center space-x-2">
-                          <span className="font-bold text-sm text-slate-900">{b.title}</span>
+                      <div className="space-y-1.5 flex-1 min-w-0">
+                        <div className="font-bold text-sm text-slate-900 leading-snug">
+                          {b.title}
+                        </div>
+
+                        {/* Status Badge moved to line below title */}
+                        <div className="flex items-center">
                           {isCancelled ? (
                             <span
-                              className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                              className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full whitespace-nowrap ${
                                 b.cancelReason === 'AUTO_RELEASED_NO_SHOW'
                                   ? 'bg-rose-100 text-rose-800 border border-rose-200'
                                   : 'bg-slate-100 text-slate-600'
@@ -378,11 +380,11 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                                 : 'CANCELLED'}
                             </span>
                           ) : b.isCheckedIn ? (
-                            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
+                            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 whitespace-nowrap">
                               ✓ {t.checkedInBadge}
                             </span>
                           ) : (
-                            <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">
+                            <span className="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 whitespace-nowrap">
                               {t.pendingCheckInBadge}
                             </span>
                           )}
