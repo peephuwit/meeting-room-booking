@@ -43,30 +43,30 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Right side: Language Switcher & User actions */}
         <div className="flex items-center space-x-1.5 sm:space-x-3">
           {/* Language Switcher */}
-          <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-xs font-semibold shrink-0">
+          <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-xs font-bold shrink-0">
             <button
+              type="button"
               onClick={() => onToggleLang('th')}
               title="ภาษาไทย"
-              className={`px-1.5 sm:px-2 py-1 rounded-md transition flex items-center space-x-1 ${
+              className={`px-2 py-1 rounded-md transition cursor-pointer ${
                 lang === 'th'
                   ? 'bg-white text-blue-600 shadow-xs'
                   : 'text-slate-500 hover:text-slate-800'
               }`}
             >
-              <span className="text-xs">🇹🇭</span>
-              <span className="hidden sm:inline text-xs">TH</span>
+              TH
             </button>
             <button
+              type="button"
               onClick={() => onToggleLang('en')}
               title="English"
-              className={`px-1.5 sm:px-2 py-1 rounded-md transition flex items-center space-x-1 ${
+              className={`px-2 py-1 rounded-md transition cursor-pointer ${
                 lang === 'en'
                   ? 'bg-white text-blue-600 shadow-xs'
                   : 'text-slate-500 hover:text-slate-800'
               }`}
             >
-              <span className="text-xs">🇬🇧</span>
-              <span className="hidden sm:inline text-xs">EN</span>
+              EN
             </button>
           </div>
 

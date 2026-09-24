@@ -30,14 +30,14 @@ export const ScheduleView: React.FC<ScheduleViewProps> = ({
   });
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+    <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 sm:pb-6 border-b border-slate-100">
         <div>
-          <h2 className="text-lg font-bold text-slate-900">{t.scheduleTitle}</h2>
+          <h2 className="text-base sm:text-lg font-bold text-slate-900">{t.scheduleTitle}</h2>
           <p className="text-xs text-slate-500 mt-0.5">{t.scheduleDesc}</p>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center justify-between sm:justify-end space-x-2 w-full sm:w-auto">
           <span className="text-xs font-semibold text-slate-600">{t.dateLabel}</span>
           <CalendarDatePicker
             value={selectedDate}

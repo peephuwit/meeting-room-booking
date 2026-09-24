@@ -133,7 +133,14 @@ export const CalendarDatePicker: React.FC<CalendarDatePickerProps> = ({
 
       {/* Popover Calendar with Thai/EN Month Support */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 z-50 w-72 max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-xl border border-slate-200 p-4">
+        <>
+          {/* Mobile backdrop */}
+          <div
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-2xs z-40 sm:hidden"
+            onClick={() => setIsOpen(false)}
+          />
+
+          <div className="fixed sm:absolute left-1/2 -translate-x-1/2 sm:translate-x-0 sm:left-auto sm:right-0 top-1/2 -translate-y-1/2 sm:translate-y-0 sm:top-auto sm:mt-2 z-50 w-72 max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-2xl sm:shadow-xl border border-slate-200 p-4">
           {/* Header: Month & Year with Prev/Next */}
           <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
             <button
@@ -231,7 +238,8 @@ export const CalendarDatePicker: React.FC<CalendarDatePickerProps> = ({
             </span>
           </div>
         </div>
-      )}
+      </>
+    )}
     </div>
   );
 };
