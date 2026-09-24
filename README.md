@@ -53,7 +53,7 @@
 
 ### 1. โคลนโปรเจกต์ (Clone Repository)
 ```bash
-git clone https://github.com/your-username/meeting-room-booking.git
+git clone https://github.com/peephuwit/meeting-room-booking.git
 cd meeting-room-booking
 ```
 
