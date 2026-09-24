@@ -289,11 +289,11 @@ export function App() {
             </div>
 
             {/* Headline and description */}
-            <div className="max-w-3xl">
-              <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white">
+            <div className="max-w-4xl lg:max-w-none">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight text-white lg:whitespace-nowrap">
                 {t.heroTitle}
               </h1>
-              <p className="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl">
                 {t.heroDesc}
               </p>
             </div>
@@ -419,7 +419,7 @@ export function App() {
           />
 
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {[1, 2, 3, 4].map((n) => (
                 <div key={n} className="bg-white rounded-2xl p-5 border border-slate-100 shadow-xs space-y-4 animate-pulse">
                   <div className="h-36 bg-slate-200/80 rounded-xl" />
@@ -448,7 +448,7 @@ export function App() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredRooms.map((room) => (
                 <RoomCard key={room.id} room={room} lang={lang} onBook={handleOpenBooking} />
               ))}

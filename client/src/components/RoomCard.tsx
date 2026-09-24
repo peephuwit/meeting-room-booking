@@ -58,22 +58,22 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room, lang, onBook }) => {
       </div>
 
       {/* Footer / Action */}
-      <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
-        <span className="text-xs text-slate-500 flex items-center">
-          <Clock className="w-3.5 h-3.5 mr-1 text-slate-400" />
-          {t.instantConfirmation}
+      <div className="px-5 sm:px-6 py-3.5 sm:py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-2">
+        <span className="text-xs text-slate-500 flex items-center truncate min-w-0">
+          <Clock className="w-3.5 h-3.5 mr-1 text-slate-400 shrink-0" />
+          <span className="truncate">{t.instantConfirmation}</span>
         </span>
         {room.isMaintenance ? (
           <button
             disabled
-            className="px-4 py-2 bg-amber-100 text-amber-800 text-xs font-semibold rounded-lg cursor-not-allowed border border-amber-300"
+            className="px-3.5 sm:px-4 py-2 bg-amber-100 text-amber-800 text-xs font-semibold rounded-lg cursor-not-allowed border border-amber-300 whitespace-nowrap shrink-0"
           >
             {t.maintenanceBadge}
           </button>
         ) : (
           <button
             onClick={() => onBook(room)}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow-sm shadow-blue-600/20 transition cursor-pointer"
+            className="px-3.5 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow-sm shadow-blue-600/20 transition cursor-pointer whitespace-nowrap shrink-0"
           >
             {t.bookRoom}
           </button>
