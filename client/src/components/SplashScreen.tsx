@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar } from 'lucide-react';
 import { Language } from '../translations';
 
@@ -8,6 +8,16 @@ interface SplashScreenProps {
 }
 
 export const SplashScreen: React.FC<SplashScreenProps> = ({ isFading, lang }) => {
+  const [isSlowLoading, setIsSlowLoading] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsSlowLoading(true);
+    }, 4500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div
       className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-950 text-white transition-all duration-1000 ease-out ${
@@ -82,6 +92,18 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ isFading, lang }) =>
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce" />
             </div>
           </div>
+
+          {/* Cold Start Notice (Appears if loading takes > 4.5 seconds) */}
+          {isSlowLoading && (
+            <div className="animate-fade-in mt-6 max-w-sm px-4 py-3 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-2xl backdrop-blur-md text-center">
+              <p className="text-xs text-slate-300 leading-relaxed">
+                <span className="inline-block mr-1.5 text-sm">☕</span>
+                {lang === 'th'
+                  ? 'กำลังปลุก Cloud Instance (Cold Start ~20-30 วินาทีในรอบแรก)... ขอบคุณที่รอสักครู่นะครับ'
+                  : 'Waking up Cloud Instance (Cold Start ~20-30s on first load)... Thank you for your patience!'}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
